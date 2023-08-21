@@ -40,7 +40,7 @@ passport.deserializeUser((user, done) => done(null, user));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/', (req, res) => res.render('index'))
+app.get('/', (req, res) => res.render('index', { user: req.user }))
 
 app.get('/login', passport.authenticate('oidc', { scope: 'openid profile email' }));
 
