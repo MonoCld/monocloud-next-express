@@ -42,4 +42,12 @@ app.use(passport.session());
 
 app.get('/', (req, res) => res.render('index'))
 
+app.get('/login', passport.authenticate('oidc', { scope: 'openid profile email' }));
+
+app.get('/logout', (req, res) => res.redirect(strategy.signout(req.user.id_token?.token)));
+
+app.get('/logout/callback', (req, res) => req.logout(() => res.redirect('/')));
+
+app.get('/login/callback', (req, res, next) => passport.authenticate('oidc', { successRedirect: '/' })(req, res, next));
+
 app.listen(port, () => console.log(`Example app listening on port ${port}`));
