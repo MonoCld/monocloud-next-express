@@ -6,7 +6,7 @@
   <body>
     <div>
         <% if (user) { %>
-            <h3>Logged in as <%= user.user_info.name %> 🎉</h3>
+            <h3>Logged in as <%= user.user_info.email %> 🎉</h3>
             <a href="/logout">Log out!</a>
         <% } else { %>
             <h3>Not Logged in!</h3>
